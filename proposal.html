@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Yanni ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff4f4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #d4526e;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffeef8 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9em;
+            border: 2px dashed #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 82, 110, 0.2);
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #444;
+            margin: 40px 0;
+            padding: 30px;
+            background: #fff9fb;
+            border-radius: 15px;
+            border-left: 4px solid #d4526e;
+        }
+
+        .question {
+            font-size: 2em;
+            color: #d4526e;
+            margin: 50px 0 30px 0;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .button {
+            background: linear-gradient(135deg, #d4526e 0%, #e07a8f 100%);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 82, 110, 0.3);
+            font-family: 'Georgia', serif;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 82, 110, 0.4);
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .celebration-content {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            animation: celebrationPop 0.5s ease-out;
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .celebration h2 {
+            font-size: 3em;
+            color: #d4526e;
+            margin-bottom: 20px;
+        }
+
+        .celebration p {
+            font-size: 1.5em;
+            color: #666;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .music-control:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .music-icon {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            .message {
+                font-size: 1em;
+                padding: 20px;
+            }
+            
+            .question {
+                font-size: 1.5em;
+            }
+            
+            .button {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <h1>Sanva</h1>
+        <p class="subtitle">There's something I always put off for too long...</p>
+        
+        <div class="photo-grid">
+            <div class="photo-placeholder">
+                <!-- Replace this div with: <img src="your-image-1.jpg" alt="Us"> -->
+                Photo 1
+            </div>
+            <div class="photo-placeholder">
+                <!-- Replace this div with: <img src="your-image-2.jpg" alt="Us"> -->
+                Photo 2
+            </div>
+            <div class="photo-placeholder">
+                <!-- Replace this div with: <img src="your-image-3.jpg" alt="Us"> -->
+                Photo 3
+            </div>
+        </div>
+        
+        <div class="message">
+            Every moment with you feels like a dream. Your smile lights up my world, and your laugh is my favorite song. You make even the ordinary moments extraordinary, and I can't imagine my life without you in it.
+        </div>
+        
+        <p class="question">Will you be my Valentine? 💕</p>
+        
+        <button class="button" onclick="celebrate()">Yes! ❤️</button>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <h2>🎉 You've made me the happiest! 🎉</h2>
+            <p>I love you, Yanni ❤️</p>
+        </div>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()" id="musicControl">
+        <span class="music-icon">🎵</span>
+        <span id="musicStatus">Play Music</span>
+    </div>
+
+    <!-- Add your music file here -->
+    <audio id="bgMusic" loop>
+        <source src="your-song.mp3" type="audio/mpeg">
+        <!-- You can also use a YouTube link converted to MP3, or a Spotify download -->
+    </audio>
+
+    <script>
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 500);
+
+        // Music control
+        const music = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            const status = document.getElementById('musicStatus');
+            if (isPlaying) {
+                music.pause();
+                status.textContent = 'Play Music';
+                isPlaying = false;
+            } else {
+                music.play();
+                status.textContent = 'Pause Music';
+                isPlaying = true;
+            }
+        }
+
+        // Celebration when they click yes
+        function celebrate() {
+            const celebration = document.getElementById('celebration');
+            celebration.style.display = 'flex';
+            
+            // Extra hearts!
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+
+            // Auto-play music if not already playing
+            if (!isPlaying) {
+                toggleMusic();
+            }
+            
+            // Close celebration after 5 seconds
+            setTimeout(() => {
+                celebration.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
